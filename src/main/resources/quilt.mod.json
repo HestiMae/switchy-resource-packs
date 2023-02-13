@@ -1,0 +1,45 @@
+{
+	"schema_version": 1,
+	"quilt_loader": {
+		"group": "system.garden",
+		"id": "switchy-resource-packs",
+		"version": "${version}",
+		"metadata": {
+			"name": "Switchy Resource Packs",
+			"description": "A client-side add-on for Switchy that switches enabled resource packs per preset",
+			"contributors": {
+				"Garden System": "Co-Authors"
+			},
+			"contact": {
+				"homepage": "https://modrinth.com/mod/switchy-resource-packs",
+				"issues": "https://github.com/HestiMae/switchy-resource-packs/issues",
+				"sources": "https://github.com/HestiMae/switchy-resource-packs"
+			},
+			"icon": "assets/switchy_resource_packs/icon.png"
+		},
+		"intermediate_mappings": "net.fabricmc:intermediary",
+		"entrypoints": {
+			"client_init": [
+				"system.garden.switchy_resource_packs.SwitchyResourcePacks"
+			]
+		},
+		"depends": [
+			{
+				"id": "minecraft",
+				"versions": "${mc}"
+			},
+			{
+				"id": "quilt_loader",
+				"versions": ">=${ql}"
+			},
+			{
+				"id": "quilt_base",
+				"versions": "${qsl}"
+			},
+			{
+				"id": "switchy-core",
+				"versions": "${switchy}"
+			}
+		]
+	}
+}
