@@ -39,6 +39,7 @@ dependencies {
 	modImplementation libs.ql
 	modImplementation libs.qsl
 	modImplementation libs.switchyCore
+	localRuntime libs.switchy
 
 }
 
