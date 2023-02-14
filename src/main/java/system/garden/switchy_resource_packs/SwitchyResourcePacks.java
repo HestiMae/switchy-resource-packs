@@ -35,6 +35,7 @@ public class SwitchyResourcePacks implements ClientModInitializer {
 				}
 				if (CONFIG.presetPacks.containsKey(switchEvent.currentPreset) && !resourcePacks.equals(CONFIG.presetPacks.get(switchEvent.currentPreset)))
 				{
+					LOGGER.info("[Switchy Resource Packs] Switching to resource packs for preset {}", switchEvent.currentPreset);
 					resourcePackManager.setEnabledProfiles(CONFIG.presetPacks.get(switchEvent.currentPreset));
 					MinecraftClient.getInstance().reloadResources();
 				}
