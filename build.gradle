@@ -31,6 +31,15 @@ repositories {
 			includeGroup "folk.sisby"
 		}
 	}
+	maven {
+		url 'https://repo.sleeping.town'
+		content {
+			includeGroup 'com.unascribed'
+		}
+	}
+	maven {
+		url = uri("https://maven.nucleoid.xyz/")
+	}
 }
 
 dependencies {
@@ -38,9 +47,7 @@ dependencies {
 	mappings variantOf(libs.qm) { classifier "intermediary-v2" }
 	modImplementation libs.ql
 	modImplementation libs.qsl
-	modImplementation libs.switchyCore
-	localRuntime libs.switchy
-
+	modImplementation libs.switchy.client
 }
 
 processResources {
