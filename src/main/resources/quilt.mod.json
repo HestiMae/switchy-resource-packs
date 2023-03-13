@@ -19,7 +19,7 @@
 		},
 		"intermediate_mappings": "net.fabricmc:intermediary",
 		"entrypoints": {
-			"client_init": [
+			"client_events": [
 				"system.garden.switchy_resource_packs.SwitchyResourcePacks"
 			]
 		},

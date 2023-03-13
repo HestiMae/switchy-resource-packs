@@ -25,20 +25,17 @@ group = project.maven_group
 
 repositories {
 	mavenLocal()
-	maven {
-		url = "https://maven.proxyfox.dev/"
+	maven { // Switchy
+		url = 'https://maven.proxyfox.dev/'
 		content {
-			includeGroup "folk.sisby"
+			includeGroup 'folk.sisby'
 		}
 	}
-	maven {
+	maven { // Lib39
 		url 'https://repo.sleeping.town'
-		content {
-			includeGroup 'com.unascribed'
-		}
 	}
-	maven {
-		url = uri("https://maven.nucleoid.xyz/")
+	maven { // Server Translations API
+		url "https://maven.nucleoid.xyz/"
 	}
 }
 
