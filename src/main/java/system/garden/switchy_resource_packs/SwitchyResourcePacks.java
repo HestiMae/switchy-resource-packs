@@ -30,7 +30,7 @@ public class SwitchyResourcePacks implements SwitchyClientEvents.Switch {
 				CONFIG.presetPacks.get(event.previousPreset()).addAll(resourcePacks);
 
 			}
-			if (CONFIG.presetPacks.containsKey(event.currentPreset()) && !resourcePacks.equals(CONFIG.presetPacks.get(event.currentPreset())))
+			if (event.currentPreset() != null && CONFIG.presetPacks.containsKey(event.currentPreset()) && !resourcePacks.equals(CONFIG.presetPacks.get(event.currentPreset())))
 			{
 				LOGGER.info("[Switchy Resource Packs] Switching to resource packs for preset {}", event.currentPreset());
 				resourcePackManager.setEnabledProfiles(CONFIG.presetPacks.get(event.currentPreset()));
