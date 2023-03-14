@@ -9,8 +9,6 @@ import org.quiltmc.loader.api.config.QuiltConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
-
 public class SwitchyResourcePacks implements SwitchyClientEvents.Switch {
 	public static final String ID = "switchy_resource_packs";
 	public static final Logger LOGGER = LoggerFactory.getLogger(ID);
@@ -21,16 +19,16 @@ public class SwitchyResourcePacks implements SwitchyClientEvents.Switch {
 		Session session = MinecraftClient.getInstance().getSession();
 		if (CONFIG.enabled && session.getPlayerUuid() != null && event.player().equals(session.getPlayerUuid()))
 		{
-			List<String> resourcePacks = MinecraftClient.getInstance().options.resourcePacks;
 			ResourcePackManager resourcePackManager = MinecraftClient.getInstance().getResourcePackManager();
 			if (event.previousPreset() != null)
 			{
+				LOGGER.info("[Switchy Resource Packs] Saving resource packs for preset {}", event.previousPreset());
 				CONFIG.presetPacks.putIfAbsent(event.previousPreset(), CONFIG.presetPacks.getDefaultValue());
 				CONFIG.presetPacks.get(event.previousPreset()).clear();
-				CONFIG.presetPacks.get(event.previousPreset()).addAll(resourcePacks);
+				CONFIG.presetPacks.get(event.previousPreset()).addAll(resourcePackManager.getEnabledNames());
 
 			}
-			if (event.currentPreset() != null && CONFIG.presetPacks.containsKey(event.currentPreset()) && !resourcePacks.equals(CONFIG.presetPacks.get(event.currentPreset())))
+			if (event.currentPreset() != null && CONFIG.presetPacks.containsKey(event.currentPreset()) && !resourcePackManager.getEnabledNames().equals(CONFIG.presetPacks.get(event.currentPreset())))
 			{
 				LOGGER.info("[Switchy Resource Packs] Switching to resource packs for preset {}", event.currentPreset());
 				resourcePackManager.setEnabledProfiles(CONFIG.presetPacks.get(event.currentPreset()));
