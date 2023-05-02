@@ -20,18 +20,20 @@ public class SwitchyResourcePacks implements SwitchyClientEvents.Switch {
 		if (CONFIG.enabled && session.getPlayerUuid() != null && event.player().equals(session.getPlayerUuid()))
 		{
 			ResourcePackManager resourcePackManager = MinecraftClient.getInstance().getResourcePackManager();
-			if (event.previousPreset() != null)
+			String previousPreset = event.previousPreset() != null ? event.previousPreset().replaceAll("\\.", "_") : null;
+			if (previousPreset != null)
 			{
-				LOGGER.info("[Switchy Resource Packs] Saving resource packs for preset {}", event.previousPreset());
-				CONFIG.presetPacks.putIfAbsent(event.previousPreset(), CONFIG.presetPacks.getDefaultValue());
-				CONFIG.presetPacks.get(event.previousPreset()).clear();
-				CONFIG.presetPacks.get(event.previousPreset()).addAll(resourcePackManager.getEnabledNames());
+				LOGGER.info("[Switchy Resource Packs] Saving resource packs for preset {}", previousPreset);
+				CONFIG.presetPacks.putIfAbsent(previousPreset, CONFIG.presetPacks.getDefaultValue());
+				CONFIG.presetPacks.get(previousPreset).clear();
+				CONFIG.presetPacks.get(previousPreset).addAll(resourcePackManager.getEnabledNames());
 
 			}
-			if (event.currentPreset() != null && CONFIG.presetPacks.containsKey(event.currentPreset()) && !resourcePackManager.getEnabledNames().equals(CONFIG.presetPacks.get(event.currentPreset())))
+			String currentPreset = event.currentPreset() != null ? event.currentPreset().replaceAll("\\.", "_") : null;
+			if (currentPreset != null && CONFIG.presetPacks.containsKey(currentPreset) && !resourcePackManager.getEnabledNames().equals(CONFIG.presetPacks.get(currentPreset)))
 			{
-				LOGGER.info("[Switchy Resource Packs] Switching to resource packs for preset {}", event.currentPreset());
-				resourcePackManager.setEnabledProfiles(CONFIG.presetPacks.get(event.currentPreset()));
+				LOGGER.info("[Switchy Resource Packs] Switching to resource packs for preset {}", currentPreset);
+				resourcePackManager.setEnabledProfiles(CONFIG.presetPacks.get(currentPreset));
 				MinecraftClient.getInstance().reloadResources();
 			}
 		}
