@@ -5,6 +5,6 @@ import org.quiltmc.config.api.values.ValueList;
 import org.quiltmc.config.api.values.ValueMap;
 
 public class SwitchyResourcePacksConfig extends WrappedConfig {
-	public boolean enabled = true;
+	public final Boolean enabled = true;
 	public final ValueMap<ValueList<String>> presetPacks = ValueMap.builder(ValueList.create("")).build();
 }
